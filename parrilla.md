@@ -5,7 +5,7 @@ Sí, todos en el mismo renglón. Hazme caso.
 
 Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
 
-    P1 —
+    P1 — Janeth, datos y modelo
     P2 —
     P3 —
     P4 —

@@ -1,17 +1,17 @@
-# =========================================================
-#  arranque/adivina.py  ·  Escudería GEIIA · Viernes S1
-#
-#  NO LO CORRAS TODAVÍA.
-#  Léelo de arriba abajo y escribe en una hoja las cuatro
-#  líneas que crees que va a imprimir. Luego lo corremos.
-# =========================================================
+#tipo de datos
 
-a = 3
-b = 4
 
-print(a + b)
-print("a + b")
+a = 3 #variable : es un lugar en donde se puede guardar valor 
+#integer int
 
-nombre = "GEIIA"
-print(nombre * 2)
-print(nombre + " " + str(a))
+b = "hola soy un string" 
+#string str es una cadena de texto 
+
+c = True # 1
+d = False # 0 
+#Booleanos Bool datos que solo peuden ser verdaderos o falsos
+
+e = .03 #1.1 1 .8 243354435546554 3234.5432323
+#float float son aquellos numeros que tinene punto decimal
+
+print(3 + a) #mostrar el valor de la variable o de lo que queramos mostrar

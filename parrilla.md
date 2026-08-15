@@ -6,7 +6,7 @@ Sí, todos en el mismo renglón. Hazme caso.
 Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
 
     P1 — Katia Garza, Pitch
-    P2 —
+    P2 — Rodolfo Santacruz Contreras, Datos
     P3 — Rogelio
     P4 — Joseh Gabriel Alejandro Balderas Alvarez, Backend
     P5 —

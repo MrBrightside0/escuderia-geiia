@@ -13,3 +13,4 @@ Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
     P6 — Edmundo Moreno, Cienticio de datos 
     
     P7 - Dominando comandos 
+    Agregar cualquier cosa

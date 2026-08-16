@@ -11,3 +11,5 @@ Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
     P4 — Joseh Gabriel Alejandro Balderas Alvarez, Backend
     P5 — Janeth, datos y modelo
     P6 — Edmundo Moreno, Cienticio de datos 
+    
+    P7 - Dominando comandos 

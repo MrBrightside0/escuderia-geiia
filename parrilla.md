@@ -5,10 +5,9 @@ Sí, todos en el mismo renglón. Hazme caso.
 
 Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
 
-    P1 — 
-    P2 —
-    P3 —
-    P4 —
-    P5 —Janeth, datos y modelo
-    
-    P7 - Prueba para dominar los comandos
+    P1 — Katia Garza, Pitch
+    P2 — Rodolfo Santacruz Contreras, Datos
+    P3 — Rogelio
+    P4 — Joseh Gabriel Alejandro Balderas Alvarez, Backend
+    P5 — Janeth, datos y modelo
+    P6 — Edmundo Moreno, Cienticio de datos 

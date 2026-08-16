@@ -10,3 +10,5 @@ Capas: datos y modelos · backend · interfaz · pitch · jefatura de equipo
     P3 —
     P4 —
     P5 —Janeth, datos y modelo
+
+    P7 - Prueba para dominar los comandos

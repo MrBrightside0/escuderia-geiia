@@ -1,13 +1,15 @@
-# =========================================================
-#  arranque/adivina.py  ·  Escudería GEIIA · Viernes S1
-#
-#  NO LO CORRAS TODAVÍA.
-#  Léelo de arriba abajo y escribe en una hoja las cuatro
-#  líneas que crees que va a imprimir. Luego lo corremos.
-# =========================================================
+# Notas roger:
+# int = números enteros
+# float = números decimales
+# bool = verdadero o falso
+# string = texto
 
 a = 3
 b = 4
+c = 0.2
+d = True
+e = False
+f = "Hola soy un string"
 
 print(a + b)
 print("a + b")

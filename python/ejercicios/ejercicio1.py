@@ -18,3 +18,8 @@
 #Has vivido 6935 días
 #De esos, has dormido 2312 días completos
 #Este semestre vas a pasar 26 horas y 40 minutos en el camino
+
+#Agregar un veredicto a las horas de sueno que ya piden
+#agregar tres casos con if, elif, y else. menos de 6, entre 6 y 8 y mas de 8. y una linea extra que use AND y OR por ejemplo: duermes bien
+#y ademas caminas poco
+#preguntas guia: Que querias que pasara?, que paso?, que dice el error? y en que orden esta las condiciones?

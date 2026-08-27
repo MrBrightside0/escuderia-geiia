@@ -33,7 +33,7 @@ dias_vividos = edad * 365
 horas_vividas = dias_vividos * 24
 
 #horas dormidas
-horas_dormidas = horas_vividas * horas_dormir
+horas_dormidas = dias_vividos * horas_dormir
 
 #dias completos dormidos
 dias_dormidos = round(horas_dormidas / 24)

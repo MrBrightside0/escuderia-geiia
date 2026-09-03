@@ -40,3 +40,5 @@ print("Adios")
 
 #Terminar el menu de tareas y subirlo a su propia rama
 #Agregar una linea mas que al salir imprima cuantas tareas quedaron pendientes
+
+#Refactorizar la tarea del while con sus funciones

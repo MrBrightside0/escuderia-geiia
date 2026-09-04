@@ -8,6 +8,8 @@
 
 
 #Formas de escribir las variables
+#CamelCase
+#Snake_case
 
 
 

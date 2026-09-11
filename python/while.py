@@ -28,15 +28,52 @@
 #REGLA DE ORO: SI AMBOS SIRVEN EN UNA SITUACION USA FOR
 
 tareas = []
-opcion = ""
 
-while opcion != "3":
-    print("1. Agregar tarea")
-    print("2. Ver tareas")
-    print("3. Salir")
+def agregar_tarea():
+    tarea = input("Añade una nuvea tarea: ")
+    tareas.append(tarea)
+    print ("Se agrego una nueva tarea")
+
+def ver_tarea():
+    if not tareas:
+        print ("No tienes tareas pendientes :)")
+    else:
+        print("Tareas pendientes: ")
+        for i, tarea in enumerate(tareas, 1):
+            print(str(i)+ ". " + tarea)
+        print()
+        
+def quitar_tarea():
+    ver_tarea()
+    if tareas:
+        num = int(input("¿Qué número de tarea dese eliminar?"))
+        eliminada = tareas.pop(num - 1)
+        print ("Su tarea "+ eliminada + " fue eliminada con éxito")
+        
+        
+def mostrar_menu():
+      print("1. Agregar tarea")
+      print("2. Ver tareas")
+      print("3. Quitar Tarea")
+      print("4. Salir")
+
+opcion = ""
+while opcion != "4":
+    mostrar_menu()
     opcion = input("Elige: ")
-    
-print("Adios")
+  
+    if opcion == "1":
+        agregar_tarea()
+    elif opcion == "2":
+        ver_tarea()
+    elif opcion == "3":
+        quitar_tarea()    
+    elif opcion == "4":
+        print ("Usted esta saliendo del programa")
+    else:
+        print ("Instrucción inválida")
+ 
+        
 
 #Terminar el menu de tareas y subirlo a su propia rama
 #Agregar una linea mas que al salir imprima cuantas tareas quedaron pendientes

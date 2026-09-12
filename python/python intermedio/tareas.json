@@ -1,0 +1,10 @@
+[
+  {
+    "texto": "comprar pan; leche",
+    "hecho": false
+  },
+  {
+    "texto": "dormir",
+    "hecho": true
+  }
+]

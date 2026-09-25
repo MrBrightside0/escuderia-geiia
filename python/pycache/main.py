@@ -1,21 +1,36 @@
-from tarea import volver_al_menu, menu_principal, eleccion_de_menu
+import os
+from funciones import separacion, juntar, formato, impresora, volver_al_menu, menu_principal, eleccion_de_menu, creditos
 
-tareas = []
+#VARIABLES:
+#GENERALES 
+task = []
 opcion = 0
+#DIVISORIAS
+tareas = []
+hecho = []
+#DICCIONARIAS 
+chequeo = []
+llave = {}
 
-with open ("tarea.txt") as f:
+#PRE
+dir = os.path.dirname(__file__)
+path = os.path.join(dir, "tarea.txt")
+with open (path) as f:
     for i in f:
-        tareas.append(i.strip())
+        task.append(i.strip())
 
-while opcion != 5:
+tareas, hecho = separacion (tareas, hecho, task)
+
+#PROG
+while opcion != 6:
+    chequeo = formato(chequeo,tareas,hecho) 
     opcion = menu_principal()
-    tareas = eleccion_de_menu(opcion,tareas)   
+    opcion, tareas, hecho = eleccion_de_menu(opcion, tareas, hecho, chequeo )
 
-if len(tareas) != 0:     
-    print("Termina tus tareas no seas flojo")
-else:
-    print("Bien hecho, puedes ver anime todo lo q quieras :3")    
+#POST 
+task = juntar(task, tareas, hecho)    
+creditos(tareas)
 
 with open ("tarea.txt", "w") as f:
-    for i in tareas:
-        f.write(i + "\n")
+    for i in task:
+        f.write(str(i) + "\n")

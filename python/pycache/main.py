@@ -1,5 +1,6 @@
 import os
-from funciones import separacion, juntar, formato, menu_principal, eleccion_de_menu, creditos
+import json
+from funciones import separacion, juntar, formato, menu_principal, eleccion_de_menu, creditos, guardar, abrir
 
 #VARIABLES:
 #GENERALES 
@@ -15,11 +16,7 @@ chequeo = []
 llave = {}
 
 #PRE
-dir = os.path.dirname(__file__)
-path = os.path.join(dir, "tarea.txt")
-with open (path) as f:
-    for i in f:
-        task.append(i.strip())
+abrir(task)
 
 tareas, hecho = separacion (tareas, hecho, task)
 
@@ -33,6 +30,4 @@ while opcion != 7:
 task = juntar(task, tareas, hecho)    
 creditos(tareas)
 
-with open ("tarea.txt", "w") as f:
-    for i in task:
-        f.write(str(i) + "\n")
+guardar(chequeo, task)   

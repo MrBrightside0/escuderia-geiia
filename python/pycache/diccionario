@@ -285,4 +285,4 @@ else:
 
 with open ("tarea.txt", "w") as f:
     for i in task:
-        f.write(str(i) + "\n")
+        f.write(str(i) + "\n")    

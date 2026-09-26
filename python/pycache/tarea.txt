@@ -1,8 +1,10 @@
-mimi
-1
 pepe
-1
-papa
-1
+0
 mama
-1
+0
+meme
+0
+mimi
+0
+fa
+0

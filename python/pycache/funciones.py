@@ -1,3 +1,5 @@
+import os
+import json
 #====================================================================== SEPARACION
 def separacion(tareas,hecho,task):
     cambio = 0
@@ -239,4 +241,21 @@ def failsafe4(_, hecho, tareas ):
             safe = 1
              
     return _
-    
+
+#========================================================================= Guardar tareas 
+def abrir(task):
+    dir = os.path.dirname(__file__)
+    path = os.path.join(dir, "tarea.txt")
+    with open (path) as f:
+        for i in f:
+            task.append(i.strip())
+
+#========================================================================= Guardar tareas 
+
+def guardar(chequeo, task):
+    with open ("tarea.txt", "w") as f:
+        for i in task:
+            f.write(str(i) + "\n")
+
+    with open("tareas.json","w") as f:
+        json.dump(chequeo, f, indent=4) 

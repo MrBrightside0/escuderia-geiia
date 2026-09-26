@@ -228,18 +228,20 @@ def falesafemenu(_, opciones):
     return _
 
 
-#========================================================================= Fail Safe, para menu
+#========================================================================= Fail Safe, para tareas 4
 def failsafe4(_, hecho, tareas ):
     safe = 0
     while safe == 0:
              
         _ = input("Que tarea quieres marcar como terminada?: ")
-         
-        if hecho[tareas.index(_)] == 1:
-           print ("La tarea ya esta marcada como terminada, selecciona otra")
+
+        if _ in tareas:
+            if hecho[tareas.index(_)] == 1:
+                    print ("La tarea ya esta marcada como terminada, selecciona otra")
+            else:
+                safe = 1
         else:
-            safe = 1
-             
+            print ("La tarea no existe")        
     return _
 
 #========================================================================= Guardar tareas 

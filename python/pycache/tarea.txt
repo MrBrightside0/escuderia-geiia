@@ -4,7 +4,7 @@ mama
 0
 meme
 0
-mimi
-0
 fa
+1
+"""index;"""
 0

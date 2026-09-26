@@ -42,6 +42,21 @@ def impresora(chequeo):
             marca = "" 
         print("[" + marca + "] " + i["trabajo"])
 
+#===================================================================== CONTADOR
+
+def contador(hecho):
+    listo = 0
+    nolisto = 0
+    for i in hecho:
+        if i == 1:
+            listo += 1
+        elif i == 0:
+            nolisto += 1
+    print("Tienes hechas: " + str(listo) + " tareas")
+    print("Te faltan: " + str(nolisto) + " tareas")          
+
+
+
 #===================================================================== CREDITOS
 
 def creditos(tareas):
@@ -64,24 +79,26 @@ def volver_al_menu():
     input("Volver a menu")
 
 #-----------------------------------------------------------------------
-def menu_principal():
+def menu_principal(_, opciones, opcion ):
     print("\033[3J\033[H\033[2J", end="")
     print("1. Agregar tarea")
     print("2. Ver tareas")
     print("3. Ver cantidad de tareas")
     print("4. Terminaste una tarea?")
     print("5. Quieres quitar una tarea? ")
-    print("6. Salir")
-    opcion = int(input("Elige: "))
+    print("6. Ver cuantas tareas tienes listas y cuantas no")
+    print("7. Salir")
+    opcion = int(falesafemenu(_, opciones))
     return opcion
 #-----------------------------------------------------------------------
-def eleccion_de_menu(opcion, tareas, hecho, chequeo):
+def eleccion_de_menu(opcion, tareas, hecho, chequeo, _,):
     print("\033[3J\033[H\033[2J", end="") #te mueve la webada hasta que no se vea lo demas  
 
 
     if (opcion) == 1: #para agregar tareas
 
-        tareas.append(input ( "Que nueva tarea tienes?: "))
+        impresora(chequeo)
+        tareas.append(failsafet1(_, tareas))
         hecho.append(0)
 
         volver_al_menu()
@@ -99,7 +116,7 @@ def eleccion_de_menu(opcion, tareas, hecho, chequeo):
             print("Estas son tus tareas: ")
 
             impresora(chequeo)
-
+            _ = input() 
             volver_al_menu()
 
                 
@@ -112,20 +129,24 @@ def eleccion_de_menu(opcion, tareas, hecho, chequeo):
 
         else:
 
-            print("Tu tienes: " + str(len(tareas)) + " tarea/s por hacer")
+            print("Tu tienes: " + str(len(tareas)) + " tarea/s en la lista")
             volver_al_menu()
 
 
-    elif opcion == 4: 
+    elif opcion == 4: # Para marcar si ya se termino una tarea 
 
         if len(tareas) == 0:  # si no tienes tareas, te dice que no tienes 
 
             print("No tienes tareas ahora mismo")
             volver_al_menu()
-        
+
+        elif hecho.count(1) == len(hecho):
+            print("Todas las tareas estan hechas")
+            volver_al_menu()
+
         else: 
             impresora(chequeo)
-            hecho[tareas.index(input("Que tarea quieres marcar como terminada?: "))] = 1
+            hecho[tareas.index(failsafe4(_, hecho, tareas ))] = 1
             volver_al_menu()
         
         
@@ -138,12 +159,84 @@ def eleccion_de_menu(opcion, tareas, hecho, chequeo):
             volver_al_menu()
 
         else:
-            print(tareas)
-            num = input("Que tarea quieres quitar?: ")
+            impresora(chequeo)
+            num = failsafet5(_, tareas, opcion)
             hecho.remove(hecho[tareas.index(num)])
             tareas.remove(num)
             volver_al_menu()
 
+    elif opcion == 6: #para ver cuales tareas estan terminadas y cuales no 
+        
+        contador(hecho)
+        volver_al_menu()
+                
+                
+
 
     return opcion, tareas, hecho 
 
+#========================================================================= Fail Safe, para tareas 5 
+
+def failsafet5(_, tareas, opcion):
+    safe = 0
+    while safe == 0:
+       
+        safe = 0
+        if opcion == 5:
+            _ = input("Que tarea quieres quitar?: ")
+
+        if _ in tareas:
+            safe = 1
+        else:
+            print ("La tarea no existe")
+
+    safe = 0        
+    return _     
+
+#========================================================================= Fail Safe, para tareas 1  
+
+def failsafet1(_, tareas):
+    safe = 0
+    while safe == 0:
+    
+            _ = input ( "Que nueva tarea tienes?: ")
+
+            if _ in tareas:
+                safe = 0
+                print ("Esta tarea ya existe, pon una que no exista")
+            else:
+                safe = 1
+
+    
+    return _
+
+#========================================================================= Fail Safe, para menu  
+
+def falesafemenu(_, opciones):
+    safe = 0
+    while safe == 0:
+        
+        _ = input("Elige: ")
+    
+        if _ in opciones:
+             safe = 1
+        else:
+            print ("Selecciona un numero que este en las opciones")
+        
+    return _
+
+
+#========================================================================= Fail Safe, para menu
+def failsafe4(_, hecho, tareas ):
+    safe = 0
+    while safe == 0:
+             
+        _ = input("Que tarea quieres marcar como terminada?: ")
+         
+        if hecho[tareas.index(_)] == 1:
+           print ("La tarea ya esta marcada como terminada, selecciona otra")
+        else:
+            safe = 1
+             
+    return _
+    

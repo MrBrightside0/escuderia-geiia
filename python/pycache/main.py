@@ -1,10 +1,12 @@
 import os
-from funciones import separacion, juntar, formato, impresora, volver_al_menu, menu_principal, eleccion_de_menu, creditos
+from funciones import separacion, juntar, formato, menu_principal, eleccion_de_menu, creditos
 
 #VARIABLES:
 #GENERALES 
 task = []
+opciones = ["1","2","3","4","5","6","7"]
 opcion = 0
+_=0
 #DIVISORIAS
 tareas = []
 hecho = []
@@ -22,10 +24,10 @@ with open (path) as f:
 tareas, hecho = separacion (tareas, hecho, task)
 
 #PROG
-while opcion != 6:
+while opcion != 7:
     chequeo = formato(chequeo,tareas,hecho) 
-    opcion = menu_principal()
-    opcion, tareas, hecho = eleccion_de_menu(opcion, tareas, hecho, chequeo )
+    opcion = menu_principal(_, opciones, opcion )
+    opcion, tareas, hecho = eleccion_de_menu(opcion, tareas, hecho, chequeo, _ )
 
 #POST 
 task = juntar(task, tareas, hecho)    

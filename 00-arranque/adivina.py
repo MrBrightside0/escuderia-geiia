@@ -6,8 +6,12 @@
 #  líneas que crees que va a imprimir. Luego lo corremos.
 # =========================================================
 
-a = 3
-b = 4
+a = 3 #variable donde se puede guardar un valor
+b = 4 #variable integer int
+c = 0.2 #float, números con punto decimal
+d = True #1
+e = False #0  "Booleanos, bool son los datos que son únicamente verdadero o falso"
+f = "Hola soy un string" #string, cadena con texto
 
 print(a + b)
 print("a + b")

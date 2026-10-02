@@ -1,0 +1,14 @@
+# --- Python ---
+__pycache__/
+*.pyc
+
+# --- Archivos que genera el propio programa al correr ---
+# Si tu código lo crea, no va al repo: cada quien tiene el suyo.
+tareas.txt
+tareas.json
+historial.json
+importante*.txt
+
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db

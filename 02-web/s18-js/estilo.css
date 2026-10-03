@@ -1,0 +1,74 @@
+
+/*Distintos tipos de selectores en CSS */
+
+/* Selector 1, etiqueta completa, si utilizamos esta
+etiqueta se reutiliza en las futuras etiquetas */
+body {
+    font-family: sans-serif;
+    background: rgb(9, 42, 75);
+    color: rgb(255, 242, 240);
+}
+
+h1 {
+    color: rgb(209, 222, 144);
+}
+
+
+/* Selector 2, nosotros elegimos especificamente a que etiquetas 
+se le pone usando class */
+
+.titulo {
+    color: chartreuse;
+}
+
+.casilla {
+    width: 100px;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 6px;
+}
+
+/* GRID Y FLEX */
+
+/* GRID acomoda en dos dimensiones, filas y columnas, como el tablero */
+
+.tablero {
+    display: grid; 
+    grid-template-columns: repeat(3, 135px);
+    gap: 2px;
+    justify-content: left ;
+}
+
+/* FLEX acomoda en linea como las O y X s dentro de su casilla */
+
+.casilla {
+    background: white;
+    height: 100px;
+    font-size: 48px;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Selector 3, Utilizando id, casi nunca se usa lol */
+
+#marcador {
+
+}
+
+.boton {
+
+}
+
+/*dos reglas pelean lol 
+div { background: blue;}
+.casilla { background: red;} */
+
+/* Ejercicio Creen su tablero de 3x3 con diferentes medidas
+a las mias, agregar un boton de reiniciar, que aun no funcione
+y modificarlo para que no se vea como se ve normalmente.
+Utilziar sus colores, su tipografia, que las casillas se ajusten 
+a la escala de la pantalla */

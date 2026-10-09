@@ -35,8 +35,8 @@ let turnoDeX = true;
 // ---------------------------------------------------------------------
 //  3 · Qué pasa al picar una casilla
 // ---------------------------------------------------------------------
-casillas.forEach(function (casilla, indice) {
-    casilla.addEventListener("click", function () {
+casillas.forEach((casilla, indice) => {
+    casilla.addEventListener("click", () => {
 
         // Si ya está ocupada, no hay nada que hacer.
         // Se revisa el ARREGLO, no la pantalla.
@@ -68,11 +68,11 @@ casillas.forEach(function (casilla, indice) {
 // se nota: el tablero se ve limpio pero no deja volver a jugar
 // en las mismas casillas. Ese error demuestra que hay dos tableros.
 
-boton.addEventListener("click", function () {
+boton.addEventListener("click", () => {
     tablero  = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
     turnoDeX = true;
 
-    casillas.forEach(function (casilla) {
+    casillas.forEach((casilla) => {
         casilla.textContent = "";
     });
 
@@ -104,3 +104,4 @@ boton.addEventListener("click", function () {
 //  Ojo: la condición tiene que revisar primero que la casilla
 //  no esté vacía. Si no, tres casillas en blanco "ganan".
 // =====================================================================
+

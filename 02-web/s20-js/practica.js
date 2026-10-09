@@ -14,11 +14,11 @@
 // Ese objeto se llama document y JavaScript lo puede leer Y modificar.
 // A eso se le llama el DOM.
 
-console.log(document.querySelector("h1"));              // el elemento
-console.log(document.querySelector("h1").textContent);  // su texto
-
-// y se puede cambiar desde aquí:
-document.querySelector("h1").textContent = "El gato";
+//console.log(document.querySelector("h1"));              // el elemento
+//console.log(document.querySelector("h1").textContent);  // su texto
+//
+//// y se puede cambiar desde aquí:
+//document.querySelector("h1").textContent = "El gato";
 
 // OJO: esto NO modifica el archivo index.html.
 // Solo cambia la copia que el navegador tiene en memoria.
@@ -34,13 +34,13 @@ document.querySelector("h1").textContent = "El gato";
 // No hay nada nuevo que aprender: es lo que ya sabían de CSS.
 
 // querySelector devuelve UNO · el primero que encuentre
-const turno = document.querySelector("#turno");
-
-// querySelectorAll devuelve una LISTA
-const casillas = document.querySelectorAll(".casilla");
-
-console.log(casillas.length);   // 9
-console.log(casillas[0]);       // la primera
+//const turno = document.querySelector("#turno");
+//
+//// querySelectorAll devuelve una LISTA
+//const casillas = document.querySelectorAll(".casilla");
+//
+//console.log(casillas.length);   // 9
+//console.log(casillas[0]);       // la primera
 
 // Error típico: usar querySelector cuando querías todas.
 // Entonces solo funciona la primera casilla.
@@ -56,11 +56,11 @@ console.log(casillas[0]);       // la primera
 // pase el evento. Es el primer código del semestre que no corre
 // de arriba abajo: el programa se queda esperando.
 
-const boton = document.querySelector(".reiniciar");
-
-boton.addEventListener("click", function () {
-    console.log("me picaron");
-});
+//const boton = document.querySelector(".reiniciar");
+//
+//boton.addEventListener("click", function () {
+//    console.log("me picaron");
+//});
 
 
 // ---------------------------------------------------------------------
@@ -71,12 +71,47 @@ boton.addEventListener("click", function () {
 // la casilla 4 de la página es tablero[4]. Ahí se juntan
 // la página y la lógica que escribimos en Python.
 
-casillas.forEach(function (casilla, indice) {
-    casilla.addEventListener("click", function () {
-        console.log("picaron la:", indice);
-    });
-});
+//casillas.forEach(function (casilla, indice) {
+//    casilla.addEventListener("click", function () {
+//        console.log("picaron la:", indice);
+//    });
+//});
 
 // Prueba esto antes de seguir: pica casillas al azar y
 // comprueba que sale el número correcto. Si eso no funciona,
 // nada de lo que viene va a funcionar.
+
+//Distintas formas de declarar funciones
+
+function sumarVieja(a, b) { return a + b;  }
+
+const sumarLarga = (a,b) => {return a + b;};
+
+
+//a partir de ahora cuando veamos react sera de esta manera
+//flechita simplificada
+const sumar = (a,b) => a + b;
+
+const doble = n => n * 2;
+
+//historial
+const historial = [
+    {ganador:"X", jugadas: "5"},
+    {ganador:"empate", jugadas: "9"},
+    {ganador:"X", jugadas: "6"},
+    {ganador:"O", jugadas: "7"}
+]
+
+//lista nueva con una cosa por cada una
+historial.map(p => p.ganador)
+
+//filtrar datos 
+historial.filter(p => p.ganador === "X")
+
+//desppaye sin filter :(
+const deX = []
+for (const p of historial) {
+    if (p.ganador === "X") {
+        deX.push(p);
+    }
+}

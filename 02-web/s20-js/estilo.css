@@ -1,9 +1,6 @@
 /* =====================================================================
-   SESIÓN 17 · Los tres selectores de CSS
+   El gato · Escudería GEIIA
    ===================================================================== */
-
-
-/* --- 1 · POR ETIQUETA · le pega a TODAS las de ese tipo ------------- */
 
 body {
     font-family: sans-serif;
@@ -12,20 +9,11 @@ body {
     text-align: center;
 }
 
-h1 {
-    color: rgb(209, 222, 144);
-}
+h1 { color: rgb(209, 222, 144); }
 
+.titulo { color: chartreuse; }
 
-/* --- 2 · POR CLASE · solo a quien se la ponemos --------------------- */
-/* Con punto en el CSS, sin punto en el HTML. */
-
-.titulo {
-    color: chartreuse;
-}
-
-/* GRID acomoda en DOS dimensiones: filas y columnas, como el tablero.
-   OJO: el grid va en el CONTENEDOR, no en las casillas. */
+/* GRID acomoda en DOS dimensiones. Va en el CONTENEDOR, no en los hijos. */
 .tablero {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -33,13 +21,10 @@ h1 {
     justify-content: center;
 }
 
-/* FLEX acomoda en UNA dimensión: centra la X dentro de su casilla.
-   width y height iguales para que la casilla sea cuadrada;
-   si solo pones height, la casilla se estira al ancho del grid. */
+/* FLEX acomoda en UNA. Centra la X dentro de su casilla. */
 .casilla {
     background: white;
     color: black;
-
     width: 100px;
     height: 100px;
     font-size: 48px;
@@ -47,12 +32,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 }
 
-.casilla:hover {
-    background: rgb(230, 238, 245);
+.casilla:hover { background: rgb(230, 238, 245); }
+
+/* Sin espacio entre las dos clases:
+   "casilla que ADEMÁS tiene la clase ocupada" */
+.casilla.ocupada {
+    cursor: not-allowed;
+    opacity: 0.85;
 }
 
 .reiniciar {
@@ -62,24 +51,14 @@ h1 {
     cursor: pointer;
 }
 
-
-/* --- 3 · POR ID · para UN solo elemento ----------------------------- */
-/* Se usa poco: casi todo se resuelve con clases. */
-
 #turno {
     margin: 12px 0;
     font-size: 18px;
 }
 
-
-/* =====================================================================
-   NOTA · cuando dos reglas pelean
-   ---------------------------------------------------------------------
-   Si las dos aplican al mismo elemento, gana la más específica;
-   si empatan, gana la que está más abajo en el archivo.
-   En el inspector, pestaña Styles, las que pierden salen TACHADAS.
-
-       div      { background: blue; }
-       .casilla { background: red;  }   ← gana esta: la clase es
-                                          más específica que la etiqueta
-   ===================================================================== */
+/* --- SESIÓN 20 --- */
+#marcador {
+    margin-top: 16px;
+    color: rgb(180, 195, 215);
+    font-size: 14px;
+}

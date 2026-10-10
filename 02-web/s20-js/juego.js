@@ -1,11 +1,12 @@
 // =====================================================================
 //  EL GATO · juego.js
-//  Escudería GEIIA · sesión 19
+//  Escudería GEIIA · sesiones 19 y 20
 //
-//  El tablero responde al clic: alterna X y O, y no deja escribir
-//  encima de una casilla ocupada.
+//  19 · el tablero responde al clic
+//  20 · detecta al ganador y recuerda el historial
 //
-//  Lo que todavía NO hace: detectar al ganador. Eso es la tarea.
+//  ESTE ES EL ARCHIVO DE REFERENCIA. Si te atoras, compara el tuyo
+//  con este, pero intenta escribirlo tú primero.
 // =====================================================================
 
 
@@ -15,46 +16,129 @@
 const casillas   = document.querySelectorAll(".casilla");
 const turnoTexto = document.querySelector("#turno");
 const boton      = document.querySelector(".reiniciar");
+const marcador   = document.querySelector("#marcador");
 
 
 // ---------------------------------------------------------------------
-//  2 · El estado, en variables
+//  2 · El estado
 // ---------------------------------------------------------------------
-// IMPORTANTE: hay DOS tableros.
-//
-//   - este arreglo, que es LA VERDAD
-//   - lo que se ve en la pantalla, que es UN REFLEJO
-//
-// Siempre se cambia primero el arreglo y luego se refleja.
-// Si los dos se separan, el juego miente.
+// Hay DOS tableros: este arreglo es LA VERDAD, la pantalla es
+// UN REFLEJO. Siempre se cambia primero el arreglo.
 
-let tablero  = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-let turnoDeX = true;
+let tablero   = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+let turnoDeX  = true;
+let terminada = false;   // sin esto se podría jugar después de ganar
+
+// Las ocho formas de ganar. No cambia nunca: por eso va arriba y const.
+const COMBINACIONES = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],   // filas
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],   // columnas
+    [0, 4, 8], [2, 4, 6],              // diagonales
+];
 
 
 // ---------------------------------------------------------------------
-//  3 · Qué pasa al picar una casilla
+//  3 · Lógica pura · portada del gato de Python
+// ---------------------------------------------------------------------
+
+/** Devuelve "X", "O" o null si todavía no hay ganador. */
+const hayGanador = (tablero) => {
+    for (const combo of COMBINACIONES) {
+        const [a, b, c] = combo;        // desestructurar la combinación
+
+        if (tablero[a] !== " " &&       // sin esto, tres vacías "ganan"
+            tablero[a] === tablero[b] &&
+            tablero[b] === tablero[c]) {
+            return tablero[a];
+        }
+    }
+    return null;
+};
+
+/** Dice si ya no quedan casillas libres. */
+const tableroLleno = (t) => !t.includes(" ");
+
+
+// ---------------------------------------------------------------------
+//  4 · El historial · localStorage + JSON
+// ---------------------------------------------------------------------
+// localStorage SOLO guarda texto, igual que un archivo. Por eso todo
+// pasa por JSON.stringify al guardar y JSON.parse al leer.
+
+const cargarHistorial = () => {
+    const guardado = localStorage.getItem("historial");
+    if (guardado === null) {
+        return [];              // primera vez: todavía no hay nada
+    }
+    return JSON.parse(guardado);
+};
+
+const guardarHistorial = (historial) => {
+    localStorage.setItem("historial", JSON.stringify(historial));
+};
+
+const registrarPartida = (ganador) => {
+    const historial = cargarHistorial();   // 1 · cargar
+    historial.push({ ganador: ganador });  // 2 · agregar
+    guardarHistorial(historial);           // 3 · guardar
+};
+
+/** Cuenta las victorias con filter y las escribe en la página. */
+const mostrarMarcador = () => {
+    const historial = cargarHistorial();
+
+    if (historial.length === 0) {
+        marcador.textContent = "Sin partidas todavía";
+        return;
+    }
+
+    const ganoX   = historial.filter(p => p.ganador === "X").length;
+    const ganoO   = historial.filter(p => p.ganador === "O").length;
+    const empates = historial.filter(p => p.ganador === "empate").length;
+
+    marcador.textContent =
+        `${historial.length} partidas · X: ${ganoX} · O: ${ganoO} · empates: ${empates}`;
+};
+
+
+// ---------------------------------------------------------------------
+//  5 · Qué pasa al picar una casilla
 // ---------------------------------------------------------------------
 casillas.forEach((casilla, indice) => {
     casilla.addEventListener("click", () => {
 
-        // Si ya está ocupada, no hay nada que hacer.
-        // Se revisa el ARREGLO, no la pantalla.
-        if (tablero[indice] !== " ") {
-            return;
-        }
+        // dos razones para no hacer nada, en orden
+        if (terminada)               return;   // la partida ya acabó
+        if (tablero[indice] !== " ") return;   // casilla ocupada
 
-        // De quién es el turno. El ternario es el mismo de Python,
-        // con otra forma: condición ? valor_si : valor_no
+        // 1 · se cambia el arreglo (la verdad)
         const marca = turnoDeX ? "X" : "O";
-
-        // 1 · se cambia el arreglo
         tablero[indice] = marca;
 
         // 2 · se refleja en la pantalla
         casilla.textContent = marca;
+        casilla.classList.add("ocupada");
 
-        // 3 · cambia el turno
+        // 3 · ¿se acabó la partida?
+        const ganador = hayGanador(tablero);
+
+        if (ganador !== null) {
+            turnoTexto.textContent = `¡Ganó ${ganador}!`;
+            terminada = true;
+            registrarPartida(ganador);
+            mostrarMarcador();
+            return;
+        }
+
+        if (tableroLleno(tablero)) {
+            turnoTexto.textContent = "Empate";
+            terminada = true;
+            registrarPartida("empate");
+            mostrarMarcador();
+            return;
+        }
+
+        // 4 · si sigue el juego, cambia el turno
         turnoDeX = !turnoDeX;
         turnoTexto.textContent = turnoDeX ? "Turno de X" : "Turno de O";
     });
@@ -62,46 +146,29 @@ casillas.forEach((casilla, indice) => {
 
 
 // ---------------------------------------------------------------------
-//  4 · El botón de reiniciar
+//  6 · El botón de reiniciar
 // ---------------------------------------------------------------------
 // Vacía el arreglo Y la pantalla. Si solo vacías una de las dos,
-// se nota: el tablero se ve limpio pero no deja volver a jugar
-// en las mismas casillas. Ese error demuestra que hay dos tableros.
+// el juego miente. Ojo con terminada: sin regresarla a false,
+// el tablero se limpia pero no deja volver a jugar.
 
 boton.addEventListener("click", () => {
-    tablero  = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-    turnoDeX = true;
+    tablero   = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+    turnoDeX  = true;
+    terminada = false;
 
     casillas.forEach((casilla) => {
         casilla.textContent = "";
+        casilla.classList.remove("ocupada");
     });
 
     turnoTexto.textContent = "Turno de X";
 });
 
 
-// =====================================================================
-//  TAREA · portar hayGanador del gato de Python
-// =====================================================================
-//  Las ocho formas de ganar, como posiciones del tablero:
-//
-//  const COMBINACIONES = [
-//      [0, 1, 2], [3, 4, 5], [6, 7, 8],   // filas
-//      [0, 3, 6], [1, 4, 7], [2, 5, 8],   // columnas
-//      [0, 4, 8], [2, 4, 6],              // diagonales
-//  ];
-//
-//  function hayGanador(tablero) {
-//      // recorre las combinaciones y devuelve "X", "O" o null
-//  }
-//
-//  Para comprobarlo, sin tocar la página:
-//
-//  console.log(hayGanador(["X","X","X"," "," "," "," "," "," "]));  // "X"
-//  console.log(hayGanador(["O"," "," "," ","O"," "," "," ","O"]));  // "O"
-//  console.log(hayGanador([" "," "," "," "," "," "," "," "," "]));  // null
-//
-//  Ojo: la condición tiene que revisar primero que la casilla
-//  no esté vacía. Si no, tres casillas en blanco "ganan".
-// =====================================================================
-
+// ---------------------------------------------------------------------
+//  7 · Al abrir la página
+// ---------------------------------------------------------------------
+// Esta línea es la que demuestra que el historial se guardó:
+// muestra el conteo antes de que juegues nada.
+mostrarMarcador();

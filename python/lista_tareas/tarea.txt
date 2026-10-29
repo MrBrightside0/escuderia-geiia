@@ -1,0 +1,10 @@
+barrer la casa
+0
+nacer
+1
+vivir
+0
+morir
+0
+comer
+0

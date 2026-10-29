@@ -1,0 +1,22 @@
+[
+    {
+        "trabajo": "barrer la casa",
+        "hecha": 0
+    },
+    {
+        "trabajo": "nacer",
+        "hecha": 1
+    },
+    {
+        "trabajo": "vivir",
+        "hecha": 0
+    },
+    {
+        "trabajo": "morir",
+        "hecha": 0
+    },
+    {
+        "trabajo": "comer",
+        "hecha": 0
+    }
+]

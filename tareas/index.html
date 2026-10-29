@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tareas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>Lista de tareas</h1>
+        <p class="descripcion">Agrega tareas, marca las que terminaste o quita las que ya no necesites.</p>
+
+        <form id="formulario-tarea">
+            <label class="sr-only" for="nueva-tarea">Que nueva tarea tienes?</label>
+            <input id="nueva-tarea" type="text" placeholder="Que nueva tarea tienes?" autocomplete="off">
+            <button type="submit">Agregar tarea</button>
+        </form>
+
+        <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+
+        <section class="resumen" aria-label="Resumen de tareas">
+            <p id="cantidad-tareas">Tu tienes: 0 tarea/s en la lista</p>
+            <p id="contador-hechas">Tienes hechas: 0 tareas</p>
+            <p id="contador-pendientes">Te faltan: 0 tareas</p>
+        </section>
+
+        <h2>Estas son tus tareas:</h2>
+        <div>
+            <button id="filtro-todas" type="button">Todas</button>
+            <button id="filtro-pendientes" type="button">Pendientes</button>
+            <button id="filtro-hechas" type="button">Hechas</button>
+        </div>
+
+        <p id="sin-tareas" class="sin-tareas" hidden>No tienes tareas ahora mismo</p>
+        <ul id="lista-tareas"></ul>
+
+        <p id="creditos" class="creditos"></p>
+    </main>
+</body>
+</html>
